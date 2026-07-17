@@ -1,0 +1,5 @@
+.env
+data/metadata/*
+data/raw/*
+data/processed/*
+poliscope-venv
