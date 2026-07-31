@@ -7,3 +7,12 @@ Je nach Anwendungsfall und Recherchefrage werden nicht alle Skripte benötigt, o
 Wenn wir Suchen nur über ein bestimmtes Set an Kommunen laufen lassen möchten, benötigen wir eine Liste der jeweiligen RIS of interest. Das Skript get_entites lädt alle aktuell angebundenen RIS inklusive Metadaten. Im Anschluss können daraus gefilterte Listen erstellt werden, die dazu dienen, im nächsten Schritt Daten für diese Kommunen zu ziehen.
 
 # 02_find_agendaItems
+
+
+
+## Maintainance des Templates
+
+```
+pip install -r requirements.txt
+nbstripout --install
+```
