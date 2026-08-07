@@ -12,6 +12,8 @@ import pandas as pd
 import requests
 from dotenv import load_dotenv
 
+from api_client import ApiRateLimitError, poliscope_request, poliscope_request
+
 load_dotenv()
 
 poliscope_api_key = os.getenv("POLISCOPE_API_KEY")

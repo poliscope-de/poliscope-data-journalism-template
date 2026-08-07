@@ -1,0 +1,209 @@
+import { theme as proTheme } from "@chakra-ui/pro-theme";
+import { CircularProgress, extendTheme, Skeleton, Tooltip } from "@chakra-ui/react";
+import "@fontsource-variable/figtree";
+
+const theme = extendTheme(proTheme, {
+    colors: {
+        brand: {
+            50: "#f9f9f5",
+            100: "#e2e2d4",
+            200: "#cfceb7",
+            300: "#bcbb98",
+            400: "#a9a87a",
+            500: "#00373a",
+            600: "#00373a",
+            700: "#00373a",
+            800: "#00373a",
+            900: "#00191c",
+        },
+        test: {
+            "#00373a",
+            "#e66500",
+            "#49b9b1",
+            "#e5675c",
+            "#0d70b7",
+            "#f1cc3e",
+            "#00a2b8",
+            "#7C8383",
+            "#f9f9f5",
+            "#00191c"
+        },
+
+        red: {
+            50: "#ffe7e5",
+            100: "#f8c0bb",
+            200: "#ee9790",
+            300: "#e66f65",
+            400: "#de473a",
+            500: "#c52e21",
+            600: "#9a2319",
+            700: "#6f1811",
+            800: "#440c08",
+            900: "#1d0100",
+        },
+        orange: {
+            50: "#fff5db",
+            100: "#ffdeae",
+            200: "#ffc47e",
+            300: "#ffa74c",
+            400: "#ff871a",
+            500: "#e66500",
+            600: "#b45b00",
+            700: "#814800",
+            800: "#4f3000",
+            900: "#201100",
+        },
+        blue: {
+            50: "#EDF7F7",
+            100: "#CEE9E9",
+            200: "#AEDADA",
+            300: "#8FCCCC",
+            400: "#6FBEBE",
+            500: "#4FB0B0",
+            600: "#408C8C",
+            700: "#306969",
+            800: "#204646",
+            900: "#102323",
+        },
+        gray: {
+            50: "#F2F3F3",
+            100: "#DADCDC",
+            200: "#C3C6C6",
+            300: "#ABAFAF",
+            400: "#949999",
+            500: "#7C8383",
+            600: "#636969",
+            700: "#4B4E4E",
+            800: "#323434",
+            900: "#191A1A",
+        },
+        accentBlue: "#00a2b8",
+        accentGreen: "#49b9b1",
+        accentGreenLight: "#daf1ef",
+        accentRed: "#e5675c",
+        wind: "#0d70b7",
+        solar: "#f1cc3e",
+        surface: "#f9f9f5",
+    },
+    components: {
+        Button: {
+            variants: {
+                secondary: {
+                    bg: "white",
+                },
+                outline: {
+                    border: "1px solid",
+                    borderColor: "gray.200",
+                    _hover: { borderColor: "gray.300" },
+                    _focus: { borderColor: "brand.500", boxShadow: "md" },
+                },
+            },
+        },
+        Input: {
+            variants: {
+                outline: {
+                    field: {
+                        bg: "white",
+                        border: "2px solid",
+                        borderColor: "gray.200",
+                        borderRadius: "xl",
+                        _hover: { borderColor: "gray.300" },
+                        _focus: { borderColor: "brand.500", boxShadow: "md" },
+                    },
+                },
+            },
+        },
+    },
+    layerStyles: {
+        hoverItem: {
+            cursor: "pointer",
+            borderRadius: "md",
+            transition: "all 0.2s",
+            border: "1px solid",
+            borderColor: "transparent",
+            _hover: { bg: "brand.50", borderColor: "brand.200" },
+        },
+    },
+    textStyles: {
+        eyebrow: {
+            fontSize: "2xs",
+            fontWeight: "600",
+            color: "gray.500",
+            textTransform: "uppercase",
+            letterSpacing: "wider",
+        },
+        display: {
+            fontSize: "2xl",
+            fontWeight: "700",
+            color: "gray.900",
+            lineHeight: "1.1",
+        },
+        title: {
+            fontSize: "lg",
+            fontWeight: "600",
+            color: "gray.800",
+            lineHeight: "1.3",
+        },
+        body: {
+            fontSize: "xs",
+            fontWeight: "500",
+            color: "gray.600",
+        },
+        bodyStrong: {
+            fontSize: "xs",
+            fontWeight: "700",
+            color: "gray.800",
+        },
+        caption: {
+            fontSize: "xs",
+            color: "gray.500",
+        },
+        meta: {
+            fontSize: "2xs",
+            color: "gray.500",
+        },
+    },
+    styles: {
+        global: {
+            body: {
+                color: "gray.800",
+                background: "#f9f9f5",
+                fontFamily: 'Figtree Variable', sans-serif !important,
+            },
+            "h1, h2": {
+                fontFamily: 'Figtree Variable', sans-serif !important,
+                fontWeight: "700 !important",
+                color: "brand.500",
+            },
+            "h3, h4, h5, h6": {
+                fontFamily: 'Figtree Variable', sans-serif !important,
+                fontWeight: "600 !important",
+                color: "brand.500",
+            },
+            "code, pre": {
+                fontFamily: 'Figtree Variable', sans-serif !important,
+            },
+        },
+    },
+});
+
+CircularProgress.defaultProps = {
+    color: "brand.500",
+};
+
+Skeleton.defaultProps = {
+    startColor: "gray.50",
+    endColor: "gray.100",
+};
+
+Tooltip.defaultProps = {
+    bg: "white",
+    color: "gray.800",
+    boxShadow: "md",
+    p: 2,
+    borderRadius: "md",
+    border: "1px solid",
+    borderColor: "gray.200",
+};
+
+export default theme;
