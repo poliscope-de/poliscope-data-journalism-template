@@ -16,25 +16,27 @@ Wrapper für allgemeine API Anfragen
 - soll auf Rate Limit reagieren, wenn der Header da was problematisches zurückmeldet (retry after)
 - nach jeder Anfrage 100ms timeout
 - die 60s Pause brauche ich dann nicht mehr, weil der wrapper aus 429 erfährt, wie lange er warten muss
+- Dict für API responses, welches bei error direkt eine Erklärung mitliefert
+- degurba Codes ergänzt
+- east west classification ergänzt
 
-Offen:
-To Do: Babys von Hamburg und Berlin mit einbeziehen und entsprechend dokumentieren
-finde die 4 fehlenden Großstädte
+Offen für Scicar:
+- Großstadt-Filterung in der get_entities: Babys von Hamburg und Berlin mit einbeziehen und entsprechend dokumentieren + finde die 4 fehlenden Großstädte
+- Skript anlegen, welches die bestehenden pipt. User sollen nur Thema für die research und einen search string eingeben müssen, um output zu erhalten
+- Doku für venv creation für Laien ergänzen, inklusive spezielle Anforderungen für Windows
+- Doku für .env creation ergänzen für Laien
+- .env example anlegen
+- .gitkeep fürs Behalten von Ordnerstruktur
+- eine Recherche finalisieren und veröffentlichen
 
-To Do: Dict für API responses, welches bei error direkt eine Erklärung mitliefert
-TO Do: Liste für Start-Codes pro Bundesland, id vom Bundesland und *
-
-Doku für venv creation mit anfügen, inklusive Windows specials
-Doku für .evn creation
-.env example
-.gitkeep fürs Behalten von Ordnerstruktur
-
-Doku 
-Alles lässt sich paginieren, außer Search
-Scan liefert Chunks
+Offen Longterm:
+- git so einrichten, dass Notebook-Output nicht mit angelegt wird
+- get context skript anlegen
+- manual classifier template anlegen
+- ai classifier template anlegen
 
 
-search endpoint: gruppiert Treffer in groups - und zwar entweder Document, oder Agenda Item, oder Proposal, je nachdem wo es im RIS visuell hängt
+
 
 
 ## Maintainance des Templates
