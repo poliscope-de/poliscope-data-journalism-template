@@ -68,43 +68,19 @@ Die `.env`-Datei enthält eure persönlichen API-Zugangsdaten. Sie wird **nicht*
 
 Wichtig: Die `.env`-Datei niemals per E-Mail verschicken, in Screenshots zeigen oder in ein Git-Repository committen - sie enthält geheime Zugangsdaten.
 
+## Maintenance des Templates
 
-
-# To Do
-
-Done:
-Wrapper für allgemeine API Anfragen
-- soll auf Rate Limit reagieren, wenn der Header da was problematisches zurückmeldet (retry after)
-- nach jeder Anfrage 100ms timeout
-- die 60s Pause brauche ich dann nicht mehr, weil der wrapper aus 429 erfährt, wie lange er warten muss
-- Dict für API responses, welches bei error direkt eine Erklärung mitliefert
-- degurba Codes ergänzt
-- east west classification ergänzt
-
-Offen für Scicar:
-- Großstadt-Filterung in der get_entities: Babys von Hamburg und Berlin mit einbeziehen und entsprechend dokumentieren + finde die 4 fehlenden Großstädte
-- .gitkeep fürs Behalten von Ordnerstruktur
-- eine Recherche finalisieren und veröffentlichen
-
-Done (2026-08-16):
-- Meta-Notebook (00_meta_recherche) angelegt, das die gesamte Pipeline anhand von Thema + Suchbegriffen durchläuft
-- Doku für venv creation für Laien ergänzt, inklusive Windows
-- Doku für .env creation ergänzt für Laien
-- .env.example um OPEN_ROUTER_KEY ergänzt
-
-Offen Longterm:
-- git so einrichten, dass Notebook-Output nicht mit angelegt wird
-- get context skript anlegen
-- manual classifier template anlegen
-- ai classifier template anlegen
-
-
-
-
-
-## Maintainance des Templates
-
-```
+```bash
 pip install -r requirements.txt
 nbstripout --install
 ```
+
+## Status
+
+Das Basis-Template für die allgemeine Recherchepipeline ist abgeschlossen. Der AI-Classifer bleibt bewusst separat und ist nicht Teil der veröffentlichten Standard-Version des Templates.
+
+## Zukünftige Erweiterungen
+
+- Ein Skript, das pro Treffer die umgebenden Textschnipsel ausliefert (erleichtert AI-basierte oder manuelle Prüfung der Relevanz)
+- Notebook für manuelle Treffer-Klassifikation
+- Notebook für KI-gestützte Klassifikation
