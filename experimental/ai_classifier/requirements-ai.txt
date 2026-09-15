@@ -1,0 +1,3 @@
+# Zusätzliche Pakete für das experimentelle KI-Klassifikations-Notebook
+pydantic-ai
+httpx
