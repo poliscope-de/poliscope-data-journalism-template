@@ -1,18 +1,22 @@
 .env
 
+# Daten und Zwischenergebnisse werden nicht versioniert
 data/metadata/*
 data/raw/*
 data/processed/*
-
 !data/metadata/.gitkeep
 !data/raw/.gitkeep
 !data/processed/.gitkeep
-
+figures/
 
 poliscope-venv
 venv
+.venv
 
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
+.pytest_cache/
 
 .DS_Store
+Thumbs.db
