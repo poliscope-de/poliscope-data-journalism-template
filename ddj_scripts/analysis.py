@@ -9,8 +9,23 @@ import pandas as pd
 
 def load_theme(path: str | Path) -> dict:
     """Load a theme JSON file."""
-    with Path(path).open() as f:
+    with Path(path).open(encoding="utf-8") as f:
         return json.load(f)
+
+
+def altair_theme(theme_data: dict) -> dict:
+    """Build the dict an Altair theme function must return (``{"config": ...}``).
+
+    Only the ``config`` part of the theme file is a valid Vega-Lite config. The
+    ``colors`` palette is meant for manual use, e.g. ``theme_data["colors"]["brand"]["500"]``.
+    """
+    return {"config": theme_data.get("config", {})}
+
+
+def get_text_color(theme_data: dict) -> str | None:
+    """Return the text colour of the theme (axis title colour, else brand colour)."""
+    axis_color = theme_data.get("config", {}).get("axis", {}).get("titleColor")
+    return axis_color or theme_data.get("colors", {}).get("brand", {}).get("500")
 
 
 def build_entity_counts(df: pd.DataFrame) -> pd.DataFrame:
@@ -37,13 +52,17 @@ def build_histogram(entity_counts: pd.DataFrame, *, bin_size: int = 5) -> pd.Dat
 
 
 def build_weekly_matches(df: pd.DataFrame, *, start_date: str = "2023-07-01") -> pd.DataFrame:
-    """Group matches by week for temporal analysis."""
+    """Group matches by week for temporal analysis.
+
+    Poliscope only has a near-complete data set from about early 2024 on, so the
+    default cut-off hides the sparse older data.
+    """
     subset = df.copy()
     subset["date"] = pd.to_datetime(subset["date"], errors="coerce")
+    subset = subset.dropna(subset=["date"])
+    subset = subset[subset["date"] >= pd.Timestamp(start_date)]
     weekly = (
-        subset.dropna(subset=["date"])
-        .loc[subset["date"] >= start_date]
-        .assign(week=subset["date"].dt.to_period("W-MON").dt.to_timestamp())
+        subset.assign(week=subset["date"].dt.to_period("W-MON").dt.to_timestamp())
         .groupby("week")
         .size()
         .reset_index(name="matches")

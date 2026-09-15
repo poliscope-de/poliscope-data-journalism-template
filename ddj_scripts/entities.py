@@ -7,13 +7,16 @@ import pandas as pd
 
 from setup import poliscope_request
 
+# Entity-IDs (amtliche Regionalschlüssel) haben führende Nullen und müssen als Text gelesen werden.
+ENTITY_DTYPES = {"id": str, "postalCode": str}
+
 
 def load_entities(entities_path: str | Path = "./data/metadata/all_entities.csv") -> pd.DataFrame:
     """Load all Poliscope entities from cache or download them from the API."""
     path = Path(entities_path)
 
     if path.exists():
-        entities_df = pd.read_csv(path)
+        entities_df = pd.read_csv(path, dtype=ENTITY_DTYPES)
         print(f"Entities aus Cache geladen: {len(entities_df)} Einträge ({path})")
         return entities_df
 

@@ -8,6 +8,14 @@ import pandas as pd
 
 from setup import poliscope_request
 
+# Treffer-CSVs müssen mit diesen dtypes gelesen werden, sonst verlieren die Entity-IDs ihre führenden Nullen.
+ITEM_DTYPES = {"entityId": str, "entityLevel": str, "proposalId": str}
+
+
+def load_search_results(path: str | Path) -> pd.DataFrame:
+    """Read a previously saved raw result CSV with the correct column types."""
+    return pd.read_csv(path, dtype=ITEM_DTYPES)
+
 
 def fetch_search_results(
     search_terms: list[str],
@@ -19,7 +27,7 @@ def fetch_search_results(
 ) -> pd.DataFrame:
     """Search Poliscope for a list of terms and save the raw result set."""
     search_string = " OR ".join(search_terms)
-    print(f"🔍 Suche nach: {search_string}")
+    print(f"Suche nach: {search_string}")
 
     all_items: list[dict[str, Any]] = []
     limit = 499
@@ -28,7 +36,7 @@ def fetch_search_results(
     request_count = 0
 
     while True:
-        request_params = {"q": search_string, "limit": limit, "offset": offset}
+        request_params: dict[str, Any] = {"q": search_string, "limit": limit, "offset": offset}
         if entity_filter:
             request_params["entityIds"] = [f"{entity_filter}*"]
 
@@ -41,18 +49,18 @@ def fetch_search_results(
         total_items = pagination.get("total", 0)
 
         if not items:
-            print("  → Keine weiteren Treffer.")
+            print("  -> Keine weiteren Treffer.")
             break
 
         all_items.extend(items)
         offset += len(items)
-        print(f"  → {offset} / {total_items} Treffer geladen (Request #{request_count})")
+        print(f"  -> {offset} / {total_items} Treffer geladen (Request #{request_count})")
 
         if offset >= total_items or len(items) < limit:
             break
 
     items_df = pd.DataFrame(all_items)
-    print(f"\n✓ FERTIG! {len(items_df)} Treffer insgesamt.")
+    print(f"\nFertig: {len(items_df)} Treffer insgesamt.")
 
     if datestring is None:
         datestring = dt.now().strftime("%Y-%m-%d")
